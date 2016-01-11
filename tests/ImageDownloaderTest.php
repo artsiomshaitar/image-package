@@ -8,7 +8,7 @@
 
 require 'src/ImageDownloader.php';
 
-use IDSrc\ImageDownloader;
+use SRC\ImageDownloader;
 
 class ImageDownloaderTest extends PHPUnit_Framework_TestCase {
 
