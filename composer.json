@@ -7,6 +7,8 @@
 
   "autoload" : {
     "classmap" : ["src"],
-    "psr-4" : ""
+    "psr-4" : {
+      "IDScr\\" : "src"
+    }
   }
 }
