@@ -9,23 +9,6 @@
 
 class ImageDownloader
 {
-
-    /*
-    private $connector;
-    private $imagelist;
-
-
-    public function __construct($host = "kasatkatest.ml", $user = "u333817651", $password = "7290020a", $port = null, $folder = "public_html"){
-        $this->connector = new Connector($host, $user, $password, $port, $folder);
-    }
-
-
-    public function loadImagesFromRemote($types){
-        $list = $this->connector->getImagesList($types);
-        var_dump($list);
-    }
-    */
-
     private static function upgradeFilter(&$filter)
     {
         foreach($filter as $i => $value)
@@ -66,19 +49,20 @@ class ImageDownloader
 
             self::upgradeFilter($filter);
 
+
+
             // Check image type by filter. If image type is not valid, throw exception
-            if(!in_array($type, $filter))
+            if(count($filter) > 0 && !in_array($type, $filter))
                 throw new ErrorException("Error exception: $type is not valid image type");
 
-            $folder = ($outputFolder != '/')? $_SERVER['DOCUMENT_ROOT'].'/'.$outputFolder : $_SERVER['DOCUMENT_ROOT'];
 
-            if(!is_dir($folder))
-                if(!mkdir($folder))
-                    throw new ErrorException("Error exception: \"{$outputFolder}\" is not a valid folder");
+            if($outputFolder != '/'){
+                $outputFolder =  __DIR__.'/'.$outputFolder."/";
+                mkdir($outputFolder, 0777, true);
+            }else
+                $outputFolder = "";
 
-
-
-            file_put_contents($folder.'/'.$remoteImageName, $remoteImage);
+            file_put_contents($outputFolder.$remoteImageName, $remoteImage);
 
             return true;
         }
