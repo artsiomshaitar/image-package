@@ -32,7 +32,7 @@ class ImageDownloader
      * Download image method
      * @param string $imageUrl remote image URL
      * @param array $filter image types. Example ['jpg', 'png', 'gif']
-     * @param string $outputFolder folder to save
+     * @param string $outputFolder folder to save. If folder not exist, method will create it.
      * @return bool return true if success and false if error
      * @throws ErrorException if something wrong
      */

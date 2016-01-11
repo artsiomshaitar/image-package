@@ -2,7 +2,7 @@
   "name": "artyomshaitor/image-package",
   "description": "Composer package that can download images from a remote to the server",
   "require": {
-    "php": ">=5.0.0"
+    "php": ">=5.3"
   },
 
   "autoload" : {
