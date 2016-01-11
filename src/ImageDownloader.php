@@ -12,6 +12,10 @@ use ErrorException;
 
 class ImageDownloader
 {
+    /**
+     * Method adds additional types in $filter
+     * @param $filter filter array
+     */
     private static function upgradeFilter(&$filter)
     {
         foreach($filter as $i => $value)
@@ -53,12 +57,9 @@ class ImageDownloader
 
             self::upgradeFilter($filter);
 
-
-
             // Check image type by filter. If image type is not valid, throw exception
             if(count($filter) > 0 && !in_array($type, $filter))
                 throw new ErrorException("Error exception: $type is not valid image type");
-
 
             if($outputFolder != '/'){
                 $outputFolder =  __DIR__.'/../'.$outputFolder."/";
