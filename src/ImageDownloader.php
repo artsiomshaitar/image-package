@@ -53,13 +53,17 @@ class ImageDownloader
             if ($remoteImage == false)
                 throw new ErrorException("Error exception: \"$imageUrl\" is the wrong URL");
 
+            // If $imageUrl is not image, throw exception
+            if(!getimagesize($imageUrl)['mime'])
+                throw new ErrorException("Error exception: \"$imageUrl\" is a not image");
+
             $type = strtolower(str_replace("image/", "", getimagesize($imageUrl)['mime']));
 
             self::upgradeFilter($filter);
 
             // Check image type by filter. If image type is not valid, throw exception
             if(count($filter) > 0 && !in_array($type, $filter))
-                throw new ErrorException("Error exception: $type is not valid image type");
+                throw new ErrorException("Error exception: \"$type\" is not valid image type");
 
             if($outputFolder != '/'){
                 $outputFolder =  __DIR__.'/../'.$outputFolder."/";

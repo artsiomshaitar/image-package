@@ -27,6 +27,7 @@ class ImageDownloaderTest extends PHPUnit_Framework_TestCase {
 
         $this->assertEquals(false, $loader->downloadImage($existingImage, ['png'])); // Попытка загрузки существующего изображения, неудовлетворяющего фильтру
         $this->assertEquals(false, $loader->downloadImage($notExistingImage)); // Попытка загрузки несущетсвующего изображения
+        $this->assertEquals(false, $loader->downloadImage("http://google.com")); // Попытка загрузки не изображения
 
     }
 
