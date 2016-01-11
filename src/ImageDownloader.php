@@ -6,6 +6,9 @@
  * Time: 18:06
  */
 
+namespace IDSrc;
+
+use ErrorException;
 
 class ImageDownloader
 {
@@ -27,6 +30,7 @@ class ImageDownloader
      * @param array $filter image types. Example ['jpg', 'png', 'gif']
      * @param string $outputFolder folder to save
      * @return bool return true if success and false if error
+     * @throws ErrorException if something wrong
      */
     public static function downloadImage($imageUrl, $filter = [], $outputFolder = '/')
     {
@@ -57,8 +61,9 @@ class ImageDownloader
 
 
             if($outputFolder != '/'){
-                $outputFolder =  __DIR__.'/'.$outputFolder."/";
-                mkdir($outputFolder, 0777, true);
+                $outputFolder =  __DIR__.'/../'.$outputFolder."/";
+                if(!is_dir($outputFolder))
+                    mkdir($outputFolder, 0777, true);
             }else
                 $outputFolder = "";
 
